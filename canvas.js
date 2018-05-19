@@ -1,8 +1,8 @@
 
 // set up canvas
 let canvas = document.querySelector('canvas');
-let width = 100;
-let height = 800;
+let width = 800;
+let height = 100;
 
 canvas.width = width;
 canvas.height = height;
@@ -19,8 +19,8 @@ ws.onmessage = function (event) {
     c.fillStyle= color;
     c.fillRect(xCoordinate, yCoordinate, 1, 1);
     xCoordinate++;
-    if(xCoordinate > 100){
-      xCoordinate = 0;  
+    if(xCoordinate > 800){
+      xCoordinate = 0;
       yCoordinate++;
     }
 };
