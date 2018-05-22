@@ -13,11 +13,16 @@ let c = canvas.getContext('2d');
 // set up websocket and draw to canvas
 let xCoordinate = 0;
 let yCoordinate = 0;
+
 let ws = new WebSocket('ws://localhost:8280/');
 
 ws.onmessage = function (event) {
-
-    const color = (event.data == 1) ?  'white' : 'black';
+   event.data.split('').map(bit => {
+    if(bit == 1) {
+        xCoordinate++;
+        return;
+    }
+    const color = (bit == 1) ?  'white' : 'black';
     c.fillStyle = color;
     c.fillRect(xCoordinate, yCoordinate, 1, 1);
     xCoordinate++;
@@ -26,5 +31,5 @@ ws.onmessage = function (event) {
        xCoordinate = 0;
        yCoordinate++;
     }
-
+  })
 };
